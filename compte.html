@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Compte</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+    <header>
+        <section class="header">
+            <div class="logo">
+                <img src="logo.png" alt="logo">
+                <span>NutriZone</span>
+            </div>
+            <div class="barre">
+                <select>
+                    <option>Toutes les catégories</option>
+                </select>
+                <span style="color: rgba(202, 202, 202, 1);">|</span>
+                <input type="text" placeholder="Cherechez votre produit... ">
+            </div>
+            <div class="location">
+            <span><a href="localisation.html"><img src="Vector.png" alt="Vector" width="13px" height="18px" style="margin-top: 8px;">   Ta localisation</a></span>
+            </div>
+            <div class="info">
+                <a href="wishlist.html"><img src="Header (1).png" alt="header"> <span>Wishlist</span></a>
+                <a href="panier.html"><img src="icon-cart.svg fill.png" alt="cart"> <span>Panier</span></a>
+                <a href="compte.html"><img src="icon-user.svg fill.png" alt="user"> <span>Compte</span></a>
+            </div>
+        </section><br><br>
+        <section class="header" style="border-width: 1px, 0px, 1px,0px;border:solid rgba(236, 236, 236, 1);">
+            <div class="button1">
+                <img src="prduit.png" alt="button" width="12px" height="12px" style="margin-left: 10px;">
+                <a href="produits.html"><input type="button" class="button" value="Toutes les catégories"></a>
+            </div>
+            <div class="liste">
+                <nav>
+                    <li style="margin-top: 10px;"><img src="Nav → List → Item → icon-hot.svg.png" alt="nav" width="20px" height="20px"> Deals</li>
+                    <ul>
+                        <a href="index.html"><li>Accueil</li></a>
+                        <a href="apropos.html"><li>À propos</li></a>
+                        <a href="produits.html"><li>Boutique</li></a>
+                        <a href="temoignage.html"><li>Témoignage</li></a>
+                        <a href="contact.html"><li>Contact</li></a>
+                    </ul>
+                </nav>
+            </div>
+            <div class="support">
+                <img src="icon-headphone.svg.png" alt="icon-headphone" width="36px" height="36px">
+                <div><span>1900 - 888</span><br><small>24/7 Support Center</small></div>
+            </div>
+        </section>
+    </header><br>
+    <form class="creer-compte" action="traitement.php" method="post">
+        <h2>Créer un compte</h2>
+        <label for="nom">Nom complet</label>
+        <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+        <label for="email">Adresse e-mail</label>
+        <input type="email" id="email" name="email" placeholder="exemple@mail.com" required>
+        <label for="motdepasse">Mot de passe</label>
+        <input type="password" id="motdepasse" name="motdepasse" placeholder="********" required>
+        <label for="confirmer">Confirmer le mot de passe</label>
+        <input type="password" id="confirmer" name="confirmer" placeholder="********" required>
+        <label>
+            <input type="checkbox" required> J'accepte les conditions d'utilisation
+        </label>
+        <button type="submit">Créer mon compte</button>
+    </form>
+    <footer>
+        <section>
+            <div>
+                <img src="logo.png" alt="logo"><br>
+                <span class="logo">NutriZone</span>
+                <p>Superbe modèle de site web d'épicerie</p>
+                <img src="List → Item → icon-location.svg.png" alt="localisationt" width="16px" height="17px"> <span><b>Adresse:</b>Casablanca,Maroc</span><br><br>
+                <img src="List → Item → icon-contact.svg.png" alt="Contact" width="16px" height="17px"> <span><b>Contact:</b>(+212) 707-512515</span><br><br>
+                <img src="List → Item → icon-email-2.svg.png" alt="email" width="16px" height="17px"> <span><b>Email:</b>Contact@nutrizone.ma</span><br><br>
+                <img src="List → Item → icon-clock.svg.png" alt="clock" width="16px" height="16px"> <span><b>Horaire de travail:</b>10:00 - 18:00,Lun - Sam</span>
+            </div>
+            <div>
+                <h2>Entreprise</h2>
+                <nav>
+                    <ul>
+                        <li><a href="apropos.html">À propos</a></li>
+                        <li>Politique de confidentialité</li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="contact.html"></a>Contactez-nous</li>
+                        <li><a href="NutriZone.html">Support center</a></li>
+                        <li>Carrières</li>
+                    </ul>
+                </nav>
+            </div>
+            <div>
+                <h2>Compte</h2>
+                <nav>
+                    <ul>
+                        <li><a href="compte.html">Se connecter</a></li>
+                        <li><a href="panier.html">Panier</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li>Détails d'expédition</li>
+                        <li>Comparer les produits</li>
+                    </ul>
+                </nav>
+            </div>
+            <div>
+                <h2>Installer l'application</h2><br><br>
+                <div style="padding-left:45px ;">
+                    <a href="https://www.apple.com/fr/app-store/"><img src="Link → app-store.jpg.png" alt="app-store" width="128px" height="42.5px"></a>
+                    <a href="https://play.google.com/store/apps?hl=fr&pli=1"><img src="Link → google-play.jpg.png" alt="google-play" width="128px" height="42.5px"></a>
+                </div><br><br>
+                <nav>
+                    <ul style="display: flex;gap:1rem;padding-left: 60px;">
+                        <b>Suivez-Nous</b>
+                        <li><a href="https://facebook.com"><img src="facebook.png" alt="facebook"></a></li>
+                        <li><a href="https://instagram.com"><img src="instagram.png" alt="instagram"></a></li>
+                        <li><a href="https://twitter.com"><img src="twitter.png" alt="twitter"></a></li>
+                        <li><a href="https://fr.pinterest.com"><img src="pinterest.png" alt="pinterest"></a></li>
+                        <li><a href="https://www.youtube.com"><img src="youtube.png" alt="youtube"></a></li>
+                    </ul>
+                </nav>
+                <span style="padding-left: 60px;">Jusqu'à 15% de réduction sur votre premier abonnement</span>
+            </div>
+        </section><br>
+        <section>
+            <img src="Footer.png" alt="Footer" style="width:100%;">
+        </section>
+        <section style="display: flex;justify-content: space-between;">
+            <div>
+                <p>&copy; 2025,<span class="span3">NutriZone</span> - HTML platforme <br>Toutes les droits sont résérvés</p>
+            </div>
+            <div style="display: flex;">
+                <div style="display: flex;gap: 1rem;">
+                    <img src="phone-call.svg.png" alt="phone-call" width="30px" height="103px"> 
+                    <span style="color: rgba(59, 183, 126, 1);font: icon;font-weight: bold;">(+212) 707-512515 <br><small style="font-weight: lighter;color: rgba(126, 126, 126, 1);">Travail 10:00 - 18:00</small></span>
+                </div>
+                <div style="display: flex;gap: 1rem;">
+                    <img src="phone-call.svg.png" alt="phone-call" width="30px" height="103px"> 
+                    <span style="color: rgba(59, 183, 126, 1);font: icon;font-weight: bold;">(+212) 707-512515 <br><small style="font-weight: lighter;color: rgba(126, 126, 126, 1);">24/7 Support Center</small></span>
+                </div>
+            </div>
+        </section>
+    </footer>
+</body>
+</html>

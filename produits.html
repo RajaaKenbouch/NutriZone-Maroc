@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre boutique</title>
+    <link rel="stylesheet" href="style5.css">
+</head>
+<body>
+    <header>
+        <section class="header">
+            <div class="logo">
+                <img src="logo.png" alt="logo">
+                <span>NutriZone</span>
+            </div>
+            <div class="barre">
+                <select>
+                    <option>Toutes les catégories</option>
+                </select>
+                <span style="color: rgba(202, 202, 202, 1);">|</span>
+                <input type="text" placeholder="Cherechez votre produit... ">
+            </div>
+            <div class="location">
+            <span><a href="localisation.html"><img src="Vector.png" alt="Vector" width="13px" height="18px" style="margin-top: 8px;">   Ta localisation</a></span>
+            </div>
+            <div class="info">
+                <a href="wishlist.html"><img src="Header (1).png" alt="header"> <span>Wishlist</span></a>
+                <a href="panier.html"><img src="icon-cart.svg fill.png" alt="cart"> <span>Panier</span></a>
+                <a href="compte.html"><img src="icon-user.svg fill.png" alt="user"> <span>Compte</span></a>
+            </div>
+        </section><br><br>
+        <section class="header" style="border-width: 1px, 0px, 1px,0px;border:solid rgba(236, 236, 236, 1);">
+            <div class="button1">
+                <img src="prduit.png" alt="button" width="12px" height="12px" style="margin-left: 10px;">
+                <a href="produits.html"><input type="button" class="button" value="Toutes les catégories"></a>
+            </div>
+            <div class="liste">
+                <nav>
+                    <li style="margin-top: 10px;"><img src="Nav → List → Item → icon-hot.svg.png" alt="nav" width="20px" height="20px"> Deals</li>
+                    <ul>
+                        <a href="index.html"><li>Accueil</li></a>
+                        <a href="apropos.html"><li>À propos</li></a>
+                        <a href="produits.html"><li>Boutique</li></a>
+                        <a href="temoignage.html"><li>Témoignage</li></a>
+                        <a href="contact.html"><li>Contact</li></a>
+                    </ul>
+                </nav>
+            </div>
+            <div class="support">
+                <img src="icon-headphone.svg.png" alt="icon-headphone" width="36px" height="36px">
+                <div><span>1900 - 888</span><br><small>24/7 Support Center</small></div>
+            </div>
+        </section>
+    </header><br>
+    <main>
+        <section style="display: flex;justify-content: center;gap: 5rem;">
+            <div class="cart">
+                <h2>🛒</h2>
+                <ul id="panier"></ul>
+                <p id="total" style="text-align: center;font-weight: bold;">Total : 0 MAD</p>
+                <script>
+                let panier = JSON.parse(localStorage.getItem("panier")) || [];
+                let total = panier.reduce((acc, item) => acc + item.prix, 0);
+                afficherPanier();
+
+                function ajouterAuPanier(nom, prix) {
+                    const index = panier.findIndex(item => item.nom === nom);
+
+                    if (index !== -1) {
+                        total -= panier[index].prix;
+                        panier.splice(index, 1);
+                    } else {
+                        panier.push({ nom, prix });
+                        total += prix;
+                    }
+                    localStorage.setItem("panier", JSON.stringify(panier));
+
+                    afficherPanier();
+                }
+                function afficherPanier() {
+                    const ul = document.getElementById("panier");
+                    ul.innerHTML = "";
+
+                    panier.forEach((item, index) => {
+                        const li = document.createElement("li");
+                        li.textContent = `${item.nom} - ${item.prix} MAD`;
+                        ul.appendChild(li);
+                    });
+
+                    document.getElementById("total").textContent = `Total : ${total} MAD`;
+                }
+                </script>
+            </div>
+            <div id="zone-favoris">
+                <h2><a href="wishlist.html">❤️</a></h2>
+                <ul id="liste-favoris"></ul>
+                <script>
+                let favoris = JSON.parse(localStorage.getItem("favoris")) || [];
+                function ajouterAuxFavoris(nomProduit) {
+                    const index = favoris.indexOf(nomProduit);
+                    if (index === -1) {
+                        favoris.push(nomProduit);
+                    } else {
+                        favoris.splice(index, 1);
+                    }
+                    localStorage.setItem("favoris", JSON.stringify(favoris));
+                    mettreAJourFavoris();
+                }
+                function mettreAJourFavoris() {
+                    const ul = document.getElementById("liste-favoris");
+                    ul.innerHTML = "";
+                    favoris.forEach(produit => {
+                        const li = document.createElement("li");
+                        li.textContent = produit;
+                        ul.appendChild(li);
+                    });
+                }
+                window.onload = mettreAJourFavoris;
+                </script>
+            </div>
+        </section>
+        <section class="section" id="produits">
+            <div class="grille-produits">
+                <div class="carte-produit">
+                    <img src="whey.jpeg" alt="Whey Protein">
+                    <h3>Whey Protein - Perform+(900DH)</h3>
+                    <p>Protéine à assimilation rapide, idéale pour la récupération musculaire.</p>
+                    <ul>
+                        <li>✔ BCAA naturels</li>
+                        <li>✔ Goûts : Vanille, Chocolat, Fraise</li>
+                        <li>✔ Pot 1kg ou 2,2kg</li>
+                    </ul>
+                    <div style="display: flex;">
+                        <button onclick="ajouterAuPanier('Whey Protein - Perform+', 900)" style="border: none;background-color: white;"><img src="Link.png" alt="link"></button>
+                        <button class="favori-btn" onclick="ajouterAuxFavoris('Whey Protein - Perform+')">❤️</button>
+                    </div>
+                </div>
+                <div class="carte-produit">
+                    <img src="vitaminD.jpeg" alt="Vitamine D3">
+                    <h3>Vitamine D3 4000 IU (165DH)</h3>
+                    <p>Renforce l'immunité et la santé osseuse. Forme idéale pour les sportifs.</p>
+                    <ul>
+                        <li>✔ 60 capsules végétales</li>
+                        <li>✔ Haut dosage</li>
+                        <li>✔ Absorption optimisée</li>
+                    </ul>
+                    <div style="display: flex;">
+                        <button onclick="ajouterAuPanier('Vitamine D3 4000 IU', 165)" style="border: none;background-color: white;"><img src="Link.png" alt="link"></button>
+                        <button class="favori-btn" onclick="ajouterAuxFavoris('Vitamine D3 4000 IU')">❤️</button>
+                    </div>
+                </div>
+                <div class="carte-produit">
+                    <img src="shaker.jpg" alt="Shaker Premium" height="200">
+                    <h3>Shaker NutriZone Premium (179DH)</h3>
+                    <p>Shaker étanche avec compartiment à poudre intégré.</p>
+                    <ul>
+                        <li>✔ Capacité 600ml</li>
+                        <li>✔ Sans fuite</li>
+                        <li>✔ Coloris : noir, vert, transparent</li>
+                    </ul>
+                    <div style="display: flex;">
+                        <button onclick="ajouterAuPanier('Shaker NutriZone Premium', 179)" style="border: none;background-color: white;"><img src="Link.png" alt="link"></button>
+                        <button class="favori-btn" onclick="ajouterAuxFavoris('Shaker NutriZone Premium')">❤️</button>
+                    </div>
+                </div>
+                <div class="carte-produit">
+                    <img src="thermox.jpeg" alt="ThermoX">
+                    <h3>Brûleur ThermoX (369DH)</h3>
+                    <p>Formule thermogénique avec thé vert, caféine et L-carnitine.</p>
+                    <ul>
+                        <li>✔ Booster d'énergie</li>
+                        <li>✔ Sèche / perte de poids</li>
+                        <li>✔ Sans effets secondaires agressifs</li>
+                    </ul>
+                    <div style="display: flex;">
+                        <button onclick="ajouterAuPanier('Brûleur ThermoX', 369)" style="border: none;background-color: white;"><img src="Link.png" alt="link"></button>
+                        <button class="favori-btn" onclick="ajouterAuxFavoris('Brûleur ThermoX')">❤️</button>
+                    </div>
+                </div>
+                <div class="carte-produit">
+                    <img src="bcaa.jpg" alt="BCAA Enduro" height="200">
+                    <h3>BCAA 2:1:1 NutriZone Enduro (500DH)</h3>
+                    <p>Acides aminés pour l'endurance et la récupération.</p>
+                    <ul>
+                        <li>✔ Goûts : citron, tropical</li>
+                        <li>✔ Sans sucre</li>
+                        <li>✔ Ratio optimal 2:1:1</li>
+                    </ul>
+                    <div style="display: flex;">
+                        <button onclick="ajouterAuPanier('BCAA 2:1:1 NutriZone Enduro', 500)" style="border: none;background-color: white;"><img src="Link.png" alt="link"></button>
+                        <button class="favori-btn" onclick="ajouterAuxFavoris('BCAA 2:1:1 NutriZone Enduro')">❤️</button>
+                    </div>
+                </div>
+                <div class="carte-produit">
+                    <img src="Pré-Workout.jpeg" alt="Pré-Workout NitroPump+">
+                    <h3>Pré-Workout NitroPump+ (379DH)</h3>
+                    <ul>
+                        <li>✔ Caféine, bêta-alanine, citrulline</li>
+                        <li>✔ Concentration et puissance</li>
+                        <li>✔ Goût fruité, sans sucre</li>
+                    </ul>
+                    <div style="display: flex;">
+                        <button onclick="ajouterAuPanier('Pré-Workout NitroPump+', 379)" style="border: none;background-color: white;"><img src="Link.png" alt="link"></button>
+                        <button class="favori-btn" onclick="ajouterAuxFavoris('Pré-Workout NitroPump+')">❤️</button>
+                    </div>
+                </div>
+                <div class="carte-produit">
+                    <img src="Oméga-3 Premium.jpeg" alt="Oméga-3 Premium">
+                    <h3>Oméga-3 Premium (312DH)</h3>
+                    <p>Acides gras essentiels pour le cœur, les articulations et la mémoire.</p>
+                    <ul>
+                        <li>✔ 1000 mg EPA + DHA</li>
+                        <li>✔ Capsule anti-reflux</li>
+                        <li>✔ Huile de poisson purifiée</li>
+                    </ul>
+                    <div style="display: flex;">
+                        <button onclick="ajouterAuPanier('Oméga-3 Premium', 312)" style="border: none;background-color: white;"><img src="Link.png" alt="link"></button>
+                        <button class="favori-btn" onclick="ajouterAuxFavoris('Oméga-3 Premium')">❤️</button>
+                    </div>
+                </div>
+                <div class="carte-produit">
+                    <img src="Créatine Monohydrate.jpeg" alt="Créatine Monohydrate">
+                    <h3>Créatine Monohydrate Pure (520DH)</h3>
+                    <p>Améliore la force, l'explosivité et la récupération.</p>
+                    <ul>
+                        <li>✔ 100% micronisée</li>
+                        <li>✔ Sans goût</li>
+                        <li>✔ 300g (100 doses)</li>
+                    </ul>
+                    <div style="display: flex;">
+                        <button onclick="ajouterAuPanier('Créatine Monohydrate Pure', 520)" style="border: none;background-color: white;"><img src="Link.png" alt="link"></button>
+                        <button class="favori-btn" onclick="ajouterAuxFavoris('Créatine Monohydrate Pure')">❤️</button>
+                    </div>
+                </div>
+                <div class="carte-produit">
+                    <img src="Barres Protéinées2.png" alt="Barres Protéinées">
+                    <h3>Barres Protéinées NutriZone (460DH)</h3>
+                    <p>Encas protéiné idéal avant ou après l'entraînement.</p>
+                    <ul>
+                        <li>✔ 20g de protéines/barre</li>
+                        <li>✔ Sans sucre ajouté</li>
+                        <li>✔ Saveurs : cookie, chocolat, coco</li>
+                    </ul>
+                    <div style="display: flex;">
+                        <button onclick="ajouterAuPanier('Barres Protéinées NutriZone', 460)" style="border: none;background-color: white;"><img src="Link.png" alt="link"></button>
+                        <button class="favori-btn" onclick="ajouterAuxFavoris('Barres Protéinées NutriZone')">❤️</button>
+                    </div>
+                </div>
+                <div class="carte-produit">
+                    <img src="shakerbottle.jpg" alt="shakerbottle">
+                    <h3>Bouteille shaker 600ml(95DH)</h3>
+                    <p>L’alliée idéale pour vos entraînements et vos mélanges protéinés.</p>
+                    <ul>
+                        <li>✔ Plastique sans BPA</li>
+                        <li>✔ Boule mélangeuse incluse</li>
+                        <li>✔ Graduation visible</li>
+                    </ul>
+                    <div style="display: flex;">
+                        <button onclick="ajouterAuPanier('Bouteille shaker 600ml', 95)" style="border: none;background-color: white;"><img src="Link.png" alt="link"></button>
+                        <button class="favori-btn" onclick="ajouterAuxFavoris('Bouteille shaker 600ml')">❤️</button>
+                    </div>
+                </div>
+                <div class="carte-produit">
+                    <img src="tapisyoga.jpg" alt="tapisyoga">
+                    <h3>Tapis de Yoga antidérapant(149DH)</h3>
+                    <p>Confort et stabilité pour toutes vos séances de yoga ou fitness.</p>
+                    <ul>
+                        <li>✔ Épaisseur 6mm pour confort optimal</li>
+                        <li>✔ Surface anti-glisse</li>
+                        <li>✔ Facile à transporter</li>
+                    </ul>
+                    <div style="display: flex;">
+                        <button onclick="ajouterAuPanier('Tapis de Yoga antidérapant', 149)" style="border: none;background-color: white;"><img src="Link.png" alt="link"></button>
+                        <button class="favori-btn" onclick="ajouterAuxFavoris('Tapis de Yoga antidérapant')">❤️</button>
+                    </div>
+                </div>
+                <div class="carte-produit">
+                    <img src="wheychocolat.webp" alt="wheychocolat">
+                    <h3>Protéine Whey chocolat 1kg(489DH)</h3>
+                    <p>Une saveur délicieuse pour booster votre récupération musculaire.</p>
+                    <ul>
+                        <li>✔ 24g de protéines par portion</li>
+                        <li>✔ Arôme chocolat naturel</li>
+                        <li>✔ Facile à mélanger</li>
+                    </ul>
+                    <div style="display: flex;">
+                        <button onclick="ajouterAuPanier('Protéine Whey chocolat 1kg', 489)" style="border: none;background-color: white;"><img src="Link.png" alt="link"></button>
+                        <button class="favori-btn" onclick="ajouterAuxFavoris('Protéine Whey chocolat 1kg')">❤️</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <section>
+            <div>
+                <img src="logo.png" alt="logo"><br>
+                <span class="logo">NutriZone</span>
+                <p>Superbe modèle de site web d'épicerie</p>
+                <img src="List → Item → icon-location.svg.png" alt="localisationt" width="16px" height="17px"> <span><b>Adresse:</b>Casablanca,Maroc</span><br><br>
+                <img src="List → Item → icon-contact.svg.png" alt="Contact" width="16px" height="17px"> <span><b>Contact:</b>(+212) 707-512515</span><br><br>
+                <img src="List → Item → icon-email-2.svg.png" alt="email" width="16px" height="17px"> <span><b>Email:</b>Contact@nutrizone.ma</span><br><br>
+                <img src="List → Item → icon-clock.svg.png" alt="clock" width="16px" height="16px"> <span><b>Horaire de travail:</b>10:00 - 18:00,Lun - Sam</span>
+            </div>
+            <div>
+                <h2>Entreprise</h2>
+                <nav>
+                    <ul>
+                        <li><a href="apropos.html">À propos</a></li>
+                        <li>Politique de confidentialité</li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="contact.html"></a>Contactez-nous</li>
+                        <li><a href="NutriZone.html">Support center</a></li>
+                        <li>Carrières</li>
+                    </ul>
+                </nav>
+            </div>
+            <div>
+                <h2>Compte</h2>
+                <nav>
+                    <ul>
+                        <li><a href="compte.html">Se connecter</a></li>
+                        <li><a href="panier.html">Panier</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li>Détails d'expédition</li>
+                        <li>Comparer les produits</li>
+                    </ul>
+                </nav>
+            </div>
+            <div>
+                <h2>Installer l'application</h2><br><br>
+                <div style="padding-left:45px ;">
+                    <a href="https://www.apple.com/fr/app-store/"><img src="Link → app-store.jpg.png" alt="app-store" width="128px" height="42.5px"></a>
+                    <a href="https://play.google.com/store/apps?hl=fr&pli=1"><img src="Link → google-play.jpg.png" alt="google-play" width="128px" height="42.5px"></a>
+                </div><br><br>
+                <nav>
+                    <ul style="display: flex;gap:1rem;padding-left: 60px;">
+                        <b>Suivez-Nous</b>
+                        <li><a href="https://facebook.com"><img src="facebook.png" alt="facebook"></a></li>
+                        <li><a href="https://instagram.com"><img src="instagram.png" alt="instagram"></a></li>
+                        <li><a href="https://twitter.com"><img src="twitter.png" alt="twitter"></a></li>
+                        <li><a href="https://fr.pinterest.com"><img src="pinterest.png" alt="pinterest"></a></li>
+                        <li><a href="https://www.youtube.com"><img src="youtube.png" alt="youtube"></a></li>
+                    </ul>
+                </nav>
+                <span style="padding-left: 60px;">Jusqu'à 15% de réduction sur votre premier abonnement</span>
+            </div>
+        </section><br>
+        <section>
+            <img src="Footer.png" alt="Footer" style="width:100%;">
+        </section>
+        <section style="display: flex;justify-content: space-between;">
+            <div>
+                <p>&copy; 2025,<span class="span3">NutriZone</span> - HTML platforme <br>Toutes les droits sont résérvés</p>
+            </div>
+            <div style="display: flex;">
+                <div style="display: flex;gap: 1rem;">
+                    <img src="phone-call.svg.png" alt="phone-call" width="30px" height="103px"> 
+                    <span style="color: rgba(59, 183, 126, 1);font: icon;font-weight: bold;">(+212) 707-512515 <br><small style="font-weight: lighter;color: rgba(126, 126, 126, 1);">Travail 10:00 - 18:00</small></span>
+                </div>
+                <div style="display: flex;gap: 1rem;">
+                    <img src="phone-call.svg.png" alt="phone-call" width="30px" height="103px"> 
+                    <span style="color: rgba(59, 183, 126, 1);font: icon;font-weight: bold;">(+212) 707-512515 <br><small style="font-weight: lighter;color: rgba(126, 126, 126, 1);">24/7 Support Center</small></span>
+                </div>
+            </div>
+        </section>
+    </footer>
+</body>
+</html>
